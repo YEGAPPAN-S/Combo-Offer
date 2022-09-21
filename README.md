@@ -1,6 +1,6 @@
 # Combo-Offer-Woocommerce
 
-/**
+
  * Combo Offer
  *
  * @package   combo-offer
@@ -8,4 +8,4 @@
  * @copyright 2022 Flycart
  * @license   GPL v2 or later
  * @link      https://flycart.org
- */
+
