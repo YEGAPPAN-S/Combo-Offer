@@ -9,7 +9,7 @@
  * @link      https://flycart.org
  */
 
-namespace Combo\App\Helper;
+namespace Combo\App\Helpers;
 
 defined( 'ABSPATH' ) || exit;
 

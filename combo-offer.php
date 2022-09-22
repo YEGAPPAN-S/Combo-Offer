@@ -22,16 +22,12 @@ defined('COMBO_PLUGIN_PATH') or define('COMBO_PLUGIN_PATH', plugin_dir_path(__FI
 if (file_exists(COMBO_PLUGIN_PATH . '/vendor/autoload.php')) {
   require COMBO_PLUGIN_PATH . '/vendor/autoload.php';
 } else {
-
   wp_die('Combo Offer Plugin is unable to find the autoload file.');
 }
 
 // To check class exists
 if (class_exists('Combo\App\Route')) {
-  global $combo_app;
   $combo_app = Combo\App\Route::hooks();
 } else {
   wp_die(__('Combo Offer Plugin is unable to find the Route class.'));
 }
-
-?>

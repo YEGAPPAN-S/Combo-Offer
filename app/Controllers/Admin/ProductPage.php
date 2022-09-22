@@ -13,7 +13,7 @@ namespace Combo\App\Controllers\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
-use Combo\App\Helper\Functions as HelperFunctions;
+use Combo\App\Helpers\Functions;
 
 
 class ProductPage
@@ -23,15 +23,15 @@ class ProductPage
      * @param $combo_tabs
      * @return mixed
      */
-    public function tabMenu( $combo_tabs ) {
-        $combo_tabs['combo_tab'] =
+    public function tabMenu( $tabs ) {
+        $tabs['combo_tab'] =
         array(
             'label'   => __( ' Combo Offer ' , 'combo' ),
             'target'  => 'combo_product_data' ,
             'class'   => array(),
             'priority'=> 70
         );
-        return $combo_tabs;
+        return $tabs;
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductPage
             'post' => $post
         ];
         
-        HelperFunctions::view('Admin/Panel',$data,true);
+        Functions::view('Admin/Panel', $data, true);
     }
 
     /**
@@ -55,9 +55,9 @@ class ProductPage
     {
         global $post;
         $post_id = $post->ID;
-        $combo_ids = $_POST['combo_ids'];
-        update_post_meta($post_id, "combo_ids", $combo_ids);
-    }
-    
+        if(isset($_POST['combo_ids'])){
+            $combo_ids = $_POST['combo_ids'];
+            update_post_meta($post_id, "combo_ids", $combo_ids);
+        }
+    }    
 }
-?>

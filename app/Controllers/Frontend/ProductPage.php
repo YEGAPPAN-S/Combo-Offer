@@ -13,13 +13,14 @@ namespace Combo\App\Controllers\Frontend;
 
 defined( 'ABSPATH' ) || exit;
 
-use Combo\App\Helper\Functions as HelperFunctions;
+use Combo\App\Helpers\Functions;
 
 
 class ProductPage
 {
   /**
    * Add to cart
+   * 
    * @return void
    */
   public function addMultipleProduct()
@@ -36,6 +37,7 @@ class ProductPage
 
   /**
    * Secure way to call add to cart
+   * 
    * @return void
    */
   public function addProduct()
@@ -51,17 +53,16 @@ class ProductPage
    * Product frontend page
    * @return void
    */
-  public function productPage ()
+  public function productTemplete ()
   {
     global $post;
-    $post_ids=get_post_meta( $post->ID , "combo_ids" , true );
-    $data = [
-      'post_ids' => $post_ids,
-      'post' => $post
-    ];
-
+    $post_ids = get_post_meta( $post->ID, "combo_ids", true );
     if(!empty($post_ids)) {
-      HelperFunctions::view('Frontend/Product',$data,true);
+      $data = [
+        'post_ids' => $post_ids,
+        'post'     => $post
+      ];
+      Functions::view( 'Frontend/Product', $data, true );
     }
   }
 
