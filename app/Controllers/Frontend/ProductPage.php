@@ -25,13 +25,17 @@ class ProductPage
    */
   public function addMultipleProduct()
   {
-    $product_ids = get_post_meta($_POST["product_id"], "combo_ids", true);
-      foreach ($product_ids as $product_id) {
-        WC()->cart->add_to_cart($product_id);
-      }
-      $url = get_permalink($_POST["product_id"]);
-      if (wp_safe_redirect($url)) {
-        exit;
+      if(isset($_POST["product_id"])) {
+          $combo_product_id = $_POST["product_id"];
+          $product_ids = get_post_meta($combo_product_id, "combo_ids", true);
+          foreach ($product_ids as $product_id) {
+              $product_id = sanitize_text_field( $product_id );
+              WC()->cart->add_to_cart($product_id);
+          }
+          $url = get_permalink($combo_product_id);
+          if (wp_safe_redirect($url)) {
+              exit;
+          }
       }
   }
 
@@ -42,11 +46,11 @@ class ProductPage
    */
   public function addProduct()
   {
-    if (!is_admin()) {
-      if (isset($_POST['combo_add_to_cart'])) {
-        $this->addMultipleProduct();
+      if (!is_admin()) {
+          if (isset($_POST['combo_add_to_cart'])) {
+              $this->addMultipleProduct();
+          }
       }
-    }
   }
 
   /**
@@ -55,15 +59,15 @@ class ProductPage
    */
   public function productTemplete ()
   {
-    global $post;
-    $post_ids = get_post_meta( $post->ID, "combo_ids", true );
-    if(!empty($post_ids)) {
-      $data = [
-        'post_ids' => $post_ids,
-        'post'     => $post
-      ];
-      Functions::view( 'Frontend/Product', $data, true );
-    }
+      global $post;
+      $post_ids = get_post_meta( $post->ID, "combo_ids", true );
+      if(!empty($post_ids)) {
+          $data = [
+              'post_ids' => $post_ids,
+              'post'     => $post
+          ];
+          Functions::view( 'Frontend/Product', $data, true );
+      }
   }
 
 }

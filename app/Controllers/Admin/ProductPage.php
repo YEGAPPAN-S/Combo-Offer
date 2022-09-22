@@ -17,10 +17,10 @@ use Combo\App\Helpers\Functions;
 
 
 class ProductPage
-{    
+{
     /**
      * Tab function
-     * @param $combo_tabs
+     * @param $tabs
      * @return mixed
      */
     public function tabMenu( $tabs ) {
@@ -57,7 +57,10 @@ class ProductPage
         $post_id = $post->ID;
         if(isset($_POST['combo_ids'])){
             $combo_ids = $_POST['combo_ids'];
-            update_post_meta($post_id, "combo_ids", $combo_ids);
+            foreach ($combo_ids as $key => $combo_id) {
+                $combo_products[ $key ] = sanitize_text_field( $combo_id );
+            }
+            update_post_meta($post_id, "combo_ids", $combo_products);
         }
     }    
 }
