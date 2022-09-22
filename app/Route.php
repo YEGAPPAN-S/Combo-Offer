@@ -20,26 +20,25 @@ class Route
      */
     public static function hooks()
     {
-        $adminpage= new Controllers\Admin\ProductPage();
+        $admin_page = new Controllers\Admin\ProductPage();
 
         //Product data tabs
-        add_filter('woocommerce_product_data_tabs', [$adminpage, 'tabMenu']);
+        add_filter('woocommerce_product_data_tabs', [$admin_page, 'tabMenu']);
 
         //Product data panel
-        add_action('woocommerce_product_data_panels', [$adminpage, 'menuData']);
+        add_action('woocommerce_product_data_panels', [$admin_page, 'menuData']);
 
         //Save meta post
-        add_action('save_post', [$adminpage, 'saveMetadata']);
+        add_action('save_post', [$admin_page, 'saveMetadata']);
 
 
-        $productpage= new Controllers\Frontend\ProductPage();
+        $product_page = new Controllers\Frontend\ProductPage();
 
         //Add to cart
-        add_action('wp', [$productpage, 'addProduct']);
+        add_action('wp', [$product_page, 'addProduct']);
 
         //Product view page
-        add_action('woocommerce_after_single_product', [$productpage, 'productPage']);
+        add_action('woocommerce_after_single_product', [$product_page, 'productTemplete']);
 
     }
 }
-?>
