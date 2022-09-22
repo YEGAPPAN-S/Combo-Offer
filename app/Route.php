@@ -31,7 +31,6 @@ class Route
         //Save meta post
         add_action('save_post', [$admin_page, 'saveMetadata']);
 
-
         $product_page = new Controllers\Frontend\ProductPage();
 
         //Add to cart
