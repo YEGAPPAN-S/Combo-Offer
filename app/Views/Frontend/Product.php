@@ -10,19 +10,18 @@
       <table><tr><td>
         <?php
           $product = wc_get_product($post_id);
-          echo $product->get_image();
-          echo "<br><br><b>";
-          echo $product->get_name();
-          echo "</b><br><br>";
-          $total_price = $total_price + $product->get_price();
+          echo $product->get_image(); ?><br><br>
+          <b> <?php echo $product->get_name(); ?> </b><br><br>
+          <?php $total_price = $total_price + $product->get_price();
           echo "Price : "; echo $product->get_price_html();
-        ?><br><br>
+        ?>
       </td></tr></table>
       <?php
     }
-    echo "Total Amount = "; echo wc_price($total_price);
-    echo "<br><br>";
     ?>
+    <div>
+      <?php echo "Total Amount = "; echo wc_price($total_price); ?> <br><br>
+    </div>
 
     <form action="#" method="post">
       <input type="hidden" name="product_id" value="<?php echo $post->ID;?>">

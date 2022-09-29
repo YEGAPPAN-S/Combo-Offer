@@ -15,7 +15,6 @@ defined( 'ABSPATH' ) || exit;
 
 use Combo\App\Helpers\Functions;
 
-
 class ProductPage
 {
     /**

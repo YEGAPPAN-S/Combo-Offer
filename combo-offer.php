@@ -27,7 +27,7 @@ if (file_exists(COMBO_PLUGIN_PATH . '/vendor/autoload.php')) {
 
 // To check class exists
 if (class_exists('Combo\App\Route')) {
-  $combo_app = Combo\App\Route::hooks();
+  Combo\App\Route::hooks();
 } else {
   wp_die(__('Combo Offer Plugin is unable to find the Route class.'));
 }
